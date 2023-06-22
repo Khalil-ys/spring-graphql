@@ -1,5 +1,6 @@
 package az.springgraphql.service;
 
+import az.springgraphql.exception.UserNotFoundException;
 import az.springgraphql.model.User;
 import az.springgraphql.model.UserRequest;
 import az.springgraphql.repository.UserRepository;
@@ -20,7 +21,7 @@ public class UserService {
 
     public User getUserById(Integer id){
         return repository.findById(id)
-                .orElseThrow(()->new RuntimeException("User not found"));
+                .orElseThrow(()->new UserNotFoundException("User not found"));
     }
 
     public User createUser(UserRequest request){
